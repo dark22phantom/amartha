@@ -1,0 +1,210 @@
+{
+	"info": {
+		"_postman_id": "ca5b492b-b9c1-487c-98c5-646e606d30d2",
+		"name": "Amartha",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23725041"
+	},
+	"item": [
+		{
+			"name": "Request Access Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response = pm.response.json();",
+							"pm.environment.set(\"access_token\", response.data.access_token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"samsul@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/token/request",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"token",
+						"request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Loan Submit",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"borrower_id\":1,\n    \"principal_amount\":1000000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/loan/submit",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"loan",
+						"submit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Loan Approval",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "loan_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "validator_photo",
+							"type": "file",
+							"src": "/Users/teddywijaya/Downloads/tmb.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/loan/approval",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"loan",
+						"approval"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Loan Investment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"loan_id\":1,\n    \"investor_id\":1,\n    \"invested_amount\":900000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/loan/investment",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"loan",
+						"investment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Loan Disbursement",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "loan_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "agreement_letter",
+							"type": "file",
+							"src": "/Users/teddywijaya/Downloads/1-agreement-letter.pdf"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/loan/disbursement",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"loan",
+						"disbursement"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

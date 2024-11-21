@@ -1,0 +1,9 @@
+vendor/
+bin/
+tmp/
+config.yaml
+config.json
+profile.out
+profile.html
+.idea/
+coverage.out

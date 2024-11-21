@@ -1,0 +1,14 @@
+{
+    "database": {
+        "address": "127.0.0.1",
+        "dbname": "amartha",
+        "password": "root",
+        "port": 5432,
+        "type": "postgres",
+        "username": "postgres"
+    },
+    "settings": {
+        "secretkey": "amartha",
+        "agreementletterhtml":"./templates/agreementletter.html"
+    }
+}
